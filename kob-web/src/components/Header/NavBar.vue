@@ -9,7 +9,7 @@ import router from "@/router/index.js";
   <div class="w-full h-20 bg-white dark:text-white dark:bg-boxdark rounded-lg shadow-md flex justify-around items-center">
     <div class="w-1/6 ml-5 text-xl flex font-bold">
       <img class="mr-3" src="@/assets/images/snake.svg" width="32"  />
-      <span class="dark:text-white">King of Bots</span>
+      <span class="dark:text-white">玩蛇仙人</span>
     </div>
 
     <div class="w-4/6 h-full flex space-x-16">

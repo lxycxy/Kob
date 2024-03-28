@@ -8,6 +8,7 @@ import PlayIndexView from "@/view/pk/PlayIndexView.vue";
 import RecordView from "@/view/record/RecordView.vue";
 import RecordContentView from "@/view/record/RecordContentView.vue";
 import RankListView from "@/view/rank/RankListView.vue";
+import UserBotView from "@/view/bot/UserBotView.vue";
 
 
 const routes = [
@@ -68,6 +69,14 @@ const routes = [
         }
     },
     {
+        path: '/user/info',
+        name: 'userInfo',
+        component: UserBotView,
+        meta: {
+            requireAuthor: true
+        }
+    },
+    {
         path: '/:pathMatch(.*)*',
         name: 'NotFound',
         component: DashBoardView,
@@ -85,6 +94,7 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
 
+    document.title =  ` ${to.name} | 玩蛇仙人`
     const store = useStore()
     if (to.meta.requireAuthor && !store.state.user.is_login) {
         next({name: 'login'});

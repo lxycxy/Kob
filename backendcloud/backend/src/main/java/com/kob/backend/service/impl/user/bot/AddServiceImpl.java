@@ -27,7 +27,7 @@ public class AddServiceImpl implements AddService {
                 (UsernamePasswordAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
         UserDetailsImpl loginUser = (UserDetailsImpl) authenticationToken.getPrincipal();
         User user = loginUser.getUser();
-
+        System.out.println(data);
         String title = data.get("title");
         String description = data.get("description");
         String content = data.get("content");

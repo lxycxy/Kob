@@ -30,7 +30,7 @@ getRankList()
             <img :src="item.photo" alt="avator" class="rounded-full max-h-full" />
             <span class="ml-2">{{item.username}}</span>
           </div>
-          <div class="text-xl text-center font-bold p-1.5 bg-meta-3 text-whiten rounded-full w-10">{{index + 1}}</div>
+          <div class="text-2xl dark:text-whiten text-center italic  font-bold p-1.5 text-black ">{{index + 1}}</div>
         </li>
       </ul>
     </div>

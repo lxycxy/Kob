@@ -1,6 +1,7 @@
 <script setup>
 import {useStore} from "vuex";
 import {ref} from "vue";
+import router from "@/router/index.js";
 const store = useStore()
 const dropdownOpen = ref(false)
 
@@ -42,16 +43,16 @@ document.addEventListener('click', event => {
     <a v-else href="/login">
       登录
     </a>
-  </div>
-  <div v-show="dropdownOpen" id="dropdown-content" class="absolute right-6 bg-white rounded-lg dark:bg-boxdark mt-5 w-50">
-    <ul class="px-4 py-4 flex flex-col gap-3">
-      <li class="rounded cursor-pointer border-b border-slate-300 hover:text-primary p-2 duration-200 ease-in-out font-medium">
-        我的Bot
-      </li>
-      <li @click="store.dispatch('logout')" class="rounded cursor-pointer hover:text-primary p-2 duration-200 ease-in-out font-medium">
-        退出登录
-      </li>
-    </ul>
+    <div v-show="dropdownOpen" id="dropdown-content" class="absolute right-0.5 bg-white rounded-lg dark:bg-boxdark mt-5 w-50">
+      <ul class="px-2 py-2 flex flex-col ">
+        <li @click="router.push({name: 'userInfo'})" class="rounded cursor-pointer border-b border-slate-300 hover:text-primary p-2 duration-200 ease-in-out font-medium">
+          我的Bot
+        </li>
+        <li @click="store.dispatch('logout')" class="rounded cursor-pointer hover:text-primary p-2 duration-200 ease-in-out font-medium">
+          退出登录
+        </li>
+      </ul>
+    </div>
   </div>
 
 </template>

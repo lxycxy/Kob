@@ -4,6 +4,7 @@ import $ from 'jquery'
 import {useStore} from "vuex";
 import router from "@/router/index.js";
 import {stringTo2D} from "@/utils/utils.js";
+import ETable from "@/components/table/ETable.vue";
 const store = useStore()
 const columns = [
   {
@@ -94,40 +95,21 @@ const openRecordContent = (id) => {
 </script>
 
 <template>
-  <a-table
-      :columns="columns"
-      :data-source="data"
-      :pagination="false"
-      size="middle"
-      bordered
-  >
-    <template #bodyCell="{ column, record }">
-      <template v-if="column.dataIndex === 'a_username'">
-        <div class="flex gap-2">
-          <a>{{ record.a_username }}</a>
-          <img class="rounded-full" :src="record.a_photo"  width="32" />
+  <div class="p-8">
+    <ETable class="w-full table-fixed" :columns="columns" :table-data="data">
+      <template #headerCell="{ column }">
+        {{ column.title }}
+      </template>
+      <template #bodyCell="{record, column}">
+        <div v-if="column.dataIndex === 'createTime'"> {{ record.record.createTime }} </div>
+        <div v-else-if="column.dataIndex === 'operator'">
+          <a class="text-primary cursor-pointer" @click="openRecordContent(record.record.id)">查看回放</a>
         </div>
       </template>
-      <template v-else-if="column.dataIndex === 'b_username'">
-        <div class="flex gap-2">
-          <a>{{ record.b_username }}</a>
-          <img class="rounded-full" :src="record.b_photo"  width="32" />
-        </div>
+      <template #footer>
+        <a-pagination @change="getRecord" v-model:current="currentPage" v-model:pageSize="pageSize" :total="total" show-less-items />
       </template>
-      <template v-else-if="column.dataIndex === 'createTime'">
-        {{record.record.createTime}}
-      </template>
-      <template v-else-if="column.dataIndex === 'operator'">
-        <a @click="openRecordContent(record.record.id)" class="text-primary hover:font-bold hover:text-primary">回放</a>
-      </template>
-    </template>
-    <template #title>
-      <div class="font-bold text-xl">对战列表</div>
-    </template>
-    <template #footer>
-      <a-pagination @change="getRecord" v-model:current="currentPage" v-model:pageSize="pageSize" :total="total" show-less-items />
-    </template>
-  </a-table>
-
+    </ETable>
+  </div>
 </template>
 
